@@ -1,0 +1,340 @@
+.cmb2-jalali-datepicker[hidden] {
+	display: none !important;
+}
+
+.cmb2-jalali-datepicker {
+	--cjdp-bg: #fff;
+	--cjdp-fg: #1d2327;
+	--cjdp-muted: #646970;
+	--cjdp-border: #dcdcde;
+	--cjdp-soft: #f6f7f7;
+	--cjdp-accent: #2271b1;
+	--cjdp-accent-hover: #135e96;
+	--cjdp-accent-soft: #e7f3ff;
+	--cjdp-danger: #d63638;
+	box-sizing: border-box;
+	width: 304px;
+	max-width: calc(100vw - 16px);
+	padding: 12px;
+	background: var(--cjdp-bg);
+	color: var(--cjdp-fg);
+	border: 1px solid var(--cjdp-border);
+	border-radius: 12px;
+	box-shadow: 0 12px 32px -12px rgba(0, 0, 0, 0.32), 0 2px 6px rgba(0, 0, 0, 0.08);
+	font: inherit;
+	line-height: 1.4;
+	animation: cmb2-jalali-datepicker-pop 160ms cubic-bezier(.2,.8,.3,1);
+}
+
+.cmb2-jalali-datepicker *,
+.cmb2-jalali-datepicker *::before,
+.cmb2-jalali-datepicker *::after {
+	box-sizing: border-box;
+}
+
+.cmb2-jalali-datepicker__header {
+	display: grid;
+	grid-template-columns: 34px minmax(0, 1fr) 34px;
+	grid-template-areas: "prev controls next";
+	direction: ltr;
+	align-items: center;
+	gap: 8px;
+	margin-bottom: 10px;
+}
+
+.cmb2-jalali-datepicker__nav {
+	width: 34px;
+	height: 34px;
+	padding: 0;
+	border: 0;
+	border-radius: 8px;
+	background: transparent;
+	color: var(--cjdp-muted);
+	font: inherit;
+	font-size: 22px;
+	line-height: 34px;
+	text-align: center;
+	cursor: pointer;
+	transition: background-color 120ms ease, color 120ms ease;
+}
+
+.cmb2-jalali-datepicker__nav:hover,
+.cmb2-jalali-datepicker__nav:focus-visible {
+	background: var(--cjdp-accent-soft);
+	color: var(--cjdp-accent);
+	outline: 0;
+}
+
+.cmb2-jalali-datepicker__prev {
+	grid-area: prev;
+}
+
+.cmb2-jalali-datepicker__next {
+	grid-area: next;
+}
+
+.cmb2-jalali-datepicker__controls {
+	grid-area: controls;
+	display: grid;
+	grid-template-columns: minmax(0, 1fr) 86px;
+	gap: 6px;
+	min-width: 0;
+}
+
+.cmb2-jalali-datepicker__select-wrap {
+	position: relative;
+	min-width: 0;
+	background: var(--cjdp-soft);
+	border: 1px solid var(--cjdp-border);
+	border-radius: 9px;
+}
+
+.cmb2-jalali-datepicker__select {
+	width: 100%;
+	min-width: 0;
+	height: 32px;
+	min-height: 32px;
+	margin: 0;
+	padding: 0 8px;
+	border: 0 !important;
+	border-radius: 9px;
+	box-shadow: none !important;
+	background: transparent !important;
+	color: var(--cjdp-fg);
+	font: inherit;
+	font-size: 13px;
+	font-weight: 600;
+	line-height: 32px;
+	text-align: center;
+	cursor: pointer;
+}
+
+.cmb2-jalali-datepicker__select:focus {
+	outline: 2px solid var(--cjdp-accent);
+	outline-offset: 1px;
+}
+
+.cmb2-jalali-datepicker__calendar {
+	width: 100%;
+	margin: 0;
+	border: 0;
+	border-collapse: separate;
+	border-spacing: 3px;
+	table-layout: fixed;
+	background: transparent;
+}
+
+.cmb2-jalali-datepicker__calendar thead th {
+	height: 27px;
+	padding: 0 0 6px;
+	border: 0;
+	border-bottom: 1px solid var(--cjdp-border);
+	background: transparent;
+	color: var(--cjdp-muted);
+	font-size: 11px;
+	font-weight: 700;
+	line-height: 20px;
+	text-align: center;
+}
+
+.cmb2-jalali-datepicker__calendar thead th:last-child {
+	color: var(--cjdp-danger);
+}
+
+.cmb2-jalali-datepicker__calendar td {
+	height: 34px;
+	padding: 0;
+	border: 0;
+	background: transparent;
+	text-align: center;
+	vertical-align: middle;
+}
+
+.cmb2-jalali-datepicker__day {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	width: 34px;
+	height: 34px;
+	padding: 0;
+	border: 0;
+	border-radius: 9px;
+	background: transparent;
+	color: var(--cjdp-fg);
+	font: inherit;
+	font-size: 13px;
+	line-height: 34px;
+	text-decoration: none;
+	cursor: pointer;
+	transition: background-color 120ms ease, color 120ms ease, box-shadow 120ms ease;
+}
+
+.cmb2-jalali-datepicker__day:hover,
+.cmb2-jalali-datepicker__day:focus-visible {
+	background: var(--cjdp-accent-soft);
+	color: var(--cjdp-accent);
+	outline: 0;
+}
+
+.cmb2-jalali-datepicker__day--today {
+	box-shadow: inset 0 0 0 1.5px var(--cjdp-accent);
+	color: var(--cjdp-accent);
+	font-weight: 700;
+}
+
+.cmb2-jalali-datepicker__day--selected,
+.cmb2-jalali-datepicker__day--selected:hover,
+.cmb2-jalali-datepicker__day--selected:focus-visible {
+	background: var(--cjdp-accent);
+	color: #fff;
+	font-weight: 700;
+	box-shadow: 0 3px 8px -5px rgba(34, 113, 177, 0.7);
+}
+
+.cmb2-jalali-datepicker__day--holiday:not(.cmb2-jalali-datepicker__day--selected) {
+	color: var(--cjdp-danger);
+}
+
+.cmb2-jalali-datepicker__empty {
+	width: 34px;
+	height: 34px;
+}
+
+.cmb2-jalali-datepicker__footer {
+	display: flex;
+	gap: 8px;
+	margin-top: 10px;
+	padding-top: 10px;
+	border-top: 1px solid var(--cjdp-border);
+}
+
+.cmb2-jalali-datepicker__action {
+	flex: 1 1 0;
+	min-height: 34px;
+	margin: 0;
+	padding: 6px 10px;
+	border: 1px solid var(--cjdp-border);
+	border-radius: 9px;
+	background: var(--cjdp-soft);
+	color: var(--cjdp-muted);
+	font: inherit;
+	font-size: 12px;
+	font-weight: 600;
+	line-height: 1.3;
+	cursor: pointer;
+	transition: background-color 120ms ease, border-color 120ms ease, color 120ms ease;
+}
+
+.cmb2-jalali-datepicker__action--today {
+	border-color: var(--cjdp-accent);
+	background: var(--cjdp-accent);
+	color: #fff;
+}
+
+.cmb2-jalali-datepicker__action--today:hover,
+.cmb2-jalali-datepicker__action--today:focus-visible {
+	border-color: var(--cjdp-accent-hover);
+	background: var(--cjdp-accent-hover);
+	color: #fff;
+	outline: 0;
+}
+
+.cmb2-jalali-datepicker__action--clear:hover,
+.cmb2-jalali-datepicker__action--clear:focus-visible {
+	border-color: #f0b8b8;
+	background: #fcf0f1;
+	color: var(--cjdp-danger);
+	outline: 0;
+}
+
+.cmb2-jalali-datepicker[dir="rtl"] .cmb2-jalali-datepicker__header {
+	grid-template-areas: "next controls prev";
+}
+
+.cmb2-jalali-datepicker[dir="rtl"] .cmb2-jalali-datepicker__calendar,
+.cmb2-jalali-datepicker[dir="rtl"] .cmb2-jalali-datepicker__controls,
+.cmb2-jalali-datepicker[dir="rtl"] .cmb2-jalali-datepicker__footer {
+	direction: rtl;
+}
+
+@media (max-width: 480px) {
+	.cmb2-jalali-datepicker {
+		position: fixed !important;
+		left: 8px !important;
+		right: 8px !important;
+		top: auto !important;
+		bottom: 8px !important;
+		width: auto;
+		max-width: none;
+		padding: 14px;
+		border-radius: 16px;
+		box-shadow: 0 18px 48px -16px rgba(0, 0, 0, 0.4);
+	}
+
+	.cmb2-jalali-datepicker__day,
+	.cmb2-jalali-datepicker__empty {
+		width: 38px;
+		height: 38px;
+	}
+
+	.cmb2-jalali-datepicker__action {
+		min-height: 40px;
+		font-size: 13px;
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.cmb2-jalali-datepicker {
+		animation: none;
+	}
+}
+
+@keyframes cmb2-jalali-datepicker-pop {
+	from {
+		opacity: 0;
+		transform: translateY(-4px) scale(.985);
+	}
+	to {
+		opacity: 1;
+		transform: none;
+	}
+}
+
+
+.cmb2-jalali-datepicker__status {
+	position: absolute;
+	width: 1px;
+	height: 1px;
+	padding: 0;
+	margin: -1px;
+	overflow: hidden;
+	clip: rect(0, 0, 0, 0);
+	white-space: nowrap;
+	border: 0;
+}
+
+.cmb2-jalali-datepicker__nav:focus-visible,
+.cmb2-jalali-datepicker__day:focus-visible,
+.cmb2-jalali-datepicker__action:focus-visible {
+	outline: 2px solid var(--cjdp-accent);
+	outline-offset: 2px;
+}
+
+
+.cmb2-jalali-date--invalid,
+.cmb2-jalali-date--invalid:focus {
+	border-color: #d63638 !important;
+	box-shadow: 0 0 0 1px #d63638 !important;
+}
+
+.cmb2-jalali-date__error {
+	display: block;
+	margin-top: 4px;
+	color: #b32d2e;
+	font-size: 12px;
+	line-height: 1.5;
+}
+
+.cmb2-jalali-date__error[hidden] {
+	display: none !important;
+}
