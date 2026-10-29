@@ -92,3 +92,77 @@ jobs:
           wp eval-file \
             "$RUNNER_TEMP/wordpress/wp-content/plugins/cmb2-jalali-date/tests/integration/cmb2-smoke.php" \
             --path="$RUNNER_TEMP/wordpress"
+
+  dependency-safety:
+    name: WordPress without CMB2
+    runs-on: ubuntu-latest
+
+    services:
+      mysql:
+        image: mysql:8.0
+        env:
+          MYSQL_ROOT_PASSWORD: root
+          MYSQL_DATABASE: wordpress
+          MYSQL_USER: wordpress
+          MYSQL_PASSWORD: wordpress
+        ports:
+          - 3306:3306
+        options: >-
+          --health-cmd="mysqladmin ping -h 127.0.0.1 -uwordpress -pwordpress"
+          --health-interval=10s
+          --health-timeout=5s
+          --health-retries=10
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.2'
+          extensions: mysqli
+          coverage: none
+          tools: wp-cli
+
+      - name: Install WordPress
+        run: |
+          WP_PATH="$RUNNER_TEMP/wordpress"
+          SITE_URL="http:"'//localhost'
+          wp core download \
+            --path="$WP_PATH" \
+            --quiet
+          wp config create \
+            --path="$WP_PATH" \
+            --dbname=wordpress \
+            --dbuser=wordpress \
+            --dbpass=wordpress \
+            --dbhost=127.0.0.1:3306 \
+            --skip-check \
+            --quiet
+          wp core install \
+            --path="$WP_PATH" \
+            --url="$SITE_URL" \
+            --title="CMB2 Jalali Date Dependency Safety" \
+            --admin_user=admin \
+            --admin_password=password \
+            --admin_email=admin@example.com \
+            --skip-email \
+            --quiet
+
+      - name: Install extension without CMB2
+        run: |
+          mkdir -p "$RUNNER_TEMP/wordpress/wp-content/plugins/cmb2-jalali-date"
+          rsync -a \
+            --exclude='.git/' \
+            "$GITHUB_WORKSPACE/" \
+            "$RUNNER_TEMP/wordpress/wp-content/plugins/cmb2-jalali-date/"
+          wp plugin activate cmb2-jalali-date \
+            --path="$RUNNER_TEMP/wordpress" \
+            --quiet
+
+      - name: Run dependency safety smoke test
+        run: |
+          wp eval-file \
+            "$RUNNER_TEMP/wordpress/wp-content/plugins/cmb2-jalali-date/tests/integration/dependency-smoke.php" \
+            --path="$RUNNER_TEMP/wordpress"
