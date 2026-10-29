@@ -2,7 +2,7 @@
 /**
  * Plugin Name: CMB2 Jalali Date
  * Description: Jalali/Persian date field extension for CMB2 with canonical Unix timestamp storage.
- * Version: 0.7.0-dev
+ * Version: 0.7.0
  * Author: Ali Niyazi
  * License: GPL-2.0-or-later
  * Text Domain: cmb2-jalali-date
@@ -14,7 +14,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'CMB2_JALALI_DATE_VERSION', '0.7.0-dev' );
+define( 'CMB2_JALALI_DATE_VERSION', '0.7.0' );
 define( 'CMB2_JALALI_DATE_FILE', __FILE__ );
 define( 'CMB2_JALALI_DATE_DIR', plugin_dir_path( __FILE__ ) );
 define( 'CMB2_JALALI_DATE_URL', plugin_dir_url( __FILE__ ) );
