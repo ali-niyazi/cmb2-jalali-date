@@ -2,7 +2,7 @@
 
 Standalone Jalali/Persian date-field extension for CMB2 with canonical Unix timestamp storage.
 
-**Development status:** `0.7.0-dev`
+**Version:** `0.7.0`
 
 
 ## Requirements
