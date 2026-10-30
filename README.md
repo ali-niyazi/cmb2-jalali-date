@@ -1,5 +1,8 @@
 # CMB2 Jalali Date
 
+[![Tests](https://github.com/ali-niyazi/cmb2-jalali-date/actions/workflows/tests.yml/badge.svg)](https://github.com/ali-niyazi/cmb2-jalali-date/actions/workflows/tests.yml)
+[![Integration](https://github.com/ali-niyazi/cmb2-jalali-date/actions/workflows/integration.yml/badge.svg)](https://github.com/ali-niyazi/cmb2-jalali-date/actions/workflows/integration.yml)
+
 Standalone Jalali/Persian date-field extension for CMB2 with canonical Unix timestamp storage.
 
 **Current release:** [0.7.0](https://github.com/ali-niyazi/cmb2-jalali-date/releases/tag/0.7.0)
