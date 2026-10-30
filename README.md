@@ -2,8 +2,9 @@
 
 Standalone Jalali/Persian date-field extension for CMB2 with canonical Unix timestamp storage.
 
-**Version:** `0.7.0`
+**Current release:** [0.7.0](https://github.com/ali-niyazi/cmb2-jalali-date/releases/tag/0.7.0)
 
+Listed in [CMB2's 3rd Party Resources](https://github.com/CMB2/CMB2) as a custom field type. See the merged upstream contribution: [CMB2/CMB2#1582](https://github.com/CMB2/CMB2/pull/1582).
 
 ## Requirements
 
@@ -14,10 +15,23 @@ The plugin does not currently enforce a minimum CMB2 version. Automated integrat
 
 ## Installation
 
-1. Install and activate CMB2.
-2. Copy or clone this plugin into `wp-content/plugins/cmb2-jalali-date`.
-3. Activate **CMB2 Jalali Date** in WordPress.
-4. Register fields using the `jalali_date_timestamp` field type.
+### From a release
+
+1. Install and activate [CMB2](https://github.com/CMB2/CMB2).
+2. Download the latest release of CMB2 Jalali Date from [GitHub Releases](https://github.com/ali-niyazi/cmb2-jalali-date/releases).
+3. Upload and install the plugin in WordPress.
+4. Activate **CMB2 Jalali Date**.
+5. Register fields using the `jalali_date_timestamp` field type.
+
+### From source
+
+Clone the repository into your WordPress plugins directory:
+
+```bash
+git clone https://github.com/ali-niyazi/cmb2-jalali-date.git wp-content/plugins/cmb2-jalali-date
+```
+
+Then activate **CMB2 Jalali Date** in WordPress.
 
 ## Field type
 
@@ -38,7 +52,6 @@ The field accepts a Jalali date in `Y/m/d` form and stores a Unix timestamp:
 ```
 
 Persian and Arabic-Indic input digits are normalized before validation.
-
 
 For programmatic integrations, an integer value is treated as an already-canonical Unix timestamp. String values are always parsed as Jalali `Y/m/d` input.
 
@@ -132,31 +145,37 @@ Show or hide the corresponding picker actions.
 
 ## Implemented behavior
 
-- strict Jalali validation
+- Strict Jalali validation
 - Persian and Arabic-Indic digit normalization
 - Jalali ↔ Gregorian conversion
-- canonical Unix timestamp storage
-- repeatable CMB2 fields
-- repeatable CMB2 groups
-- dynamic initialization after `cmb2_add_row`
-- dependency-free Jalali picker
+- Canonical Unix timestamp storage
+- Repeatable CMB2 fields
+- Repeatable CMB2 groups
+- Dynamic initialization after `cmb2_add_row`
+- Dependency-free Jalali picker
 - RTL-aware navigation
-- keyboard navigation and focus management
-- responsive picker positioning
-- inline accessible validation errors
-- server-side validation fallback notices
-- locale-aware digit presentation
+- Keyboard navigation and focus management
+- Responsive picker positioning
+- Inline accessible validation errors
+- Server-side validation fallback notices
+- Locale-aware digit presentation
 - WordPress text-domain based localization
 
 ## Localization
 
-Text domain: `cmb2-jalali-date`
+Text domain:
+
+```text
+cmb2-jalali-date
+```
 
 The plugin ships with:
 
-- `languages/cmb2-jalali-date.pot`
-- `languages/cmb2-jalali-date-fa_IR.po`
-- `languages/cmb2-jalali-date-fa_IR.mo`
+```text
+languages/cmb2-jalali-date.pot
+languages/cmb2-jalali-date-fa_IR.po
+languages/cmb2-jalali-date-fa_IR.mo
+```
 
 The source strings remain English and the Persian UI is supplied through the normal WordPress translation system.
 
@@ -164,11 +183,11 @@ The source strings remain English and the Persian UI is supplied through the nor
 
 The following are deferred until matching server-side semantics and tests exist:
 
-- arbitrary `date_format`
-- minimum/maximum dates
-- disabled-date rules
-- datetime/time fields
-- date ranges
+- Arbitrary `date_format`
+- Minimum/maximum dates
+- Disabled-date rules
+- Datetime/time fields
+- Date ranges
 
 ## Validation
 
@@ -184,25 +203,25 @@ Client-side validation improves UX, but PHP validation remains authoritative so 
 - CI compatibility matrix: PHP 7.4, 8.0, 8.1, 8.2, 8.3, 8.4, and 8.5
 - Jalali ↔ Gregorian conversion
 - Persian and Arabic-Indic digit normalization
-- leap and non-leap Esfand boundaries
-- invalid date rejection
-- stored timestamp → Jalali display round-trip
+- Leap and non-leap Esfand boundaries
+- Invalid date rejection
+- Stored timestamp → Jalali display round-trip
 - WordPress + CMB2 2.13.5 integration smoke test in GitHub Actions
-- canonical Unix timestamp post-meta storage
-- invalid scalar field submissions preserve the previous valid value
-- repeatable field storage and ordering
-- repeatable group storage
-- clearing a field removes its stored post meta
+- Canonical Unix timestamp post-meta storage
+- Invalid scalar field submissions preserve the previous valid value
+- Repeatable field storage and ordering
+- Repeatable group storage
+- Clearing a field removes its stored post meta
 
 ### Manual browser testing
 
 - RTL/LTR picker interaction
-- manual-input-only mode
-- compact picker interaction
-- clear action
-- newly added repeatable rows
-- newly added group rows
-- save/reload persistence
+- Manual-input-only mode
+- Compact picker interaction
+- Clear action
+- Newly added repeatable rows
+- Newly added group rows
+- Save/reload persistence
 - Persian-digit input with Latin-digit display mode
 
 ### Local static checks
